@@ -12,12 +12,19 @@ jobs:
         id: extract-version
         shell: pwsh
         run: |
-          $LatestTag = git describe --tags --abbrev=0 --match=[0-9]*.[0-9]*.[0-9]*
+          $LatestTag = git describe --tags --abbrev=0 --match=[0-9]*.[0-9]*.[0-9]* 2>$null
+          if ($LASTEXITCODE -ne 0) {
+            $LatestTag = ""
+          }
           $VersionXmlContent = Get-Content -Path "version.xml" -Raw
           $Version = [regex]::Match($VersionXmlContent, '<Version>(\d+\.\d+\.\d+)</Version>').Groups[1].Value
-          Write-Host "Last git tag: $LatestTag"
+          if ([string]::IsNullOrWhiteSpace($LatestTag)) {
+            Write-Host "Last git tag: <none>"
+          } else {
+            Write-Host "Last git tag: $LatestTag"
+          }
           Write-Host "Detected version: $Version"
-          if ($Version -eq $LatestTag) {
+          if (-not [string]::IsNullOrWhiteSpace($LatestTag) -and $Version -eq $LatestTag) {
             Write-Host "Version equals latest tag, failing workflow!"
             exit 1
           }
