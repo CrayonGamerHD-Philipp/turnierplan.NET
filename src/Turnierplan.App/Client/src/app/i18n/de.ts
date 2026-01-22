@@ -590,6 +590,7 @@ export const de = {
               Label: 'Platzierungsregel in Gruppen:',
               Values: {
                 ByPoints: 'Punkte',
+                ByMatchesWon: 'Siege',
                 ByScoreDifference: 'Tordifferenz',
                 ByScore: 'geschossene Tore',
                 ByDirectComparison: 'direkter Vergleich'

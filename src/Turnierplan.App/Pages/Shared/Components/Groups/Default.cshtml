@@ -4,6 +4,7 @@
 
 @{
     var showGroupResults = Model.Tournament.PresentationConfiguration.ShowResults is PresentationConfiguration.ResultsMode.Default;
+    var columnCount = showGroupResults ? 9 : 2;
 }
 
 @foreach (var group in Model.Tournament.Groups)
@@ -31,7 +32,10 @@
             }
             @if (showGroupResults)
             {
-                <th class="text-center" style="width: 10%;">Spiele</th>
+                <th class="text-center" style="width: 8%;">Sp.</th>
+                <th class="text-center" style="width: 6%;">G</th>
+                <th class="text-center" style="width: 6%;">U</th>
+                <th class="text-center" style="width: 6%;">V</th>
                 <th class="text-center" style="width: 10%;">Tore</th>
                 <th class="text-center" style="width: 10%;">TD</th>
                 <th class="text-center" style="width: 10%;">Pkt.</th>
@@ -46,7 +50,7 @@
         @if (group.Participants.Count == 0)
         {
             <tr>
-                <td colspan="6">In dieser Gruppe gibt es keine Mannschaften.</td>
+                <td colspan="@columnCount">In dieser Gruppe gibt es keine Mannschaften.</td>
             </tr>
         }
         @{
@@ -72,6 +76,9 @@
                 @if (showGroupResults)
                 {
                     <td class="text-center align-middle">@(participant.Statistics.MatchesPlayed)</td>
+                    <td class="text-center align-middle">@(participant.Statistics.MatchesWon)</td>
+                    <td class="text-center align-middle">@(participant.Statistics.MatchesDrawn)</td>
+                    <td class="text-center align-middle">@(participant.Statistics.MatchesLost)</td>
                     <td class="text-center align-middle text-nowrap">@(participant.Statistics.ScoreFor) : @(participant.Statistics.ScoreAgainst)</td>
                     <td class="text-center align-middle">@(participant.Statistics.ScoreDifference)</td>
                     <td class="text-center align-middle">@(participant.Statistics.Points)</td>
@@ -84,4 +91,9 @@
         }
         </tbody>
     </table>
+    @if (showGroupResults)
+    {
+        <div class="small text-secondary mb-4">Legende: G = Siege, U = Unentschieden, V = Niederlagen</div>
+    }
 }
+

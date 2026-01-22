@@ -72,6 +72,7 @@ export const availableComparisonModeOptions: ComparisonModeOption[] = [
   { id: 62, modes: [ TeamComparisonMode.ByDirectComparison, TeamComparisonMode.ByScore, TeamComparisonMode.ByPoints, TeamComparisonMode.ByScoreDifference ], isStandard: false },
   { id: 63, modes: [ TeamComparisonMode.ByDirectComparison, TeamComparisonMode.ByScore, TeamComparisonMode.ByScoreDifference ], isStandard: false },
   { id: 64, modes: [ TeamComparisonMode.ByDirectComparison, TeamComparisonMode.ByScore, TeamComparisonMode.ByScoreDifference, TeamComparisonMode.ByPoints ], isStandard: false },
+  { id: 65, modes: [ TeamComparisonMode.ByPoints, TeamComparisonMode.ByMatchesWon, TeamComparisonMode.ByScoreDifference, TeamComparisonMode.ByScore, TeamComparisonMode.ByDirectComparison ], isStandard: true },
 ];
 
 /**
