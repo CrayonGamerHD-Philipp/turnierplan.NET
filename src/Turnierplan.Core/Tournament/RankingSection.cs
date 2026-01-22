@@ -272,6 +272,7 @@ internal sealed class RankingSection
                     var diff = mode switch
                     {
                         TeamComparisonMode.ByPoints => y.SortByMatchesStatistics.Points - x.SortByMatchesStatistics.Points,
+                        TeamComparisonMode.ByMatchesWon => y.SortByMatchesStatistics.MatchesWon - x.SortByMatchesStatistics.MatchesWon,
                         TeamComparisonMode.ByScoreDifference => y.SortByMatchesStatistics.ScoreDifference - x.SortByMatchesStatistics.ScoreDifference,
                         TeamComparisonMode.ByScore => y.SortByMatchesStatistics.ScoreFor - x.SortByMatchesStatistics.ScoreFor,
                         TeamComparisonMode.ByDirectComparison => 0, // Direct comparison is ignored in this case

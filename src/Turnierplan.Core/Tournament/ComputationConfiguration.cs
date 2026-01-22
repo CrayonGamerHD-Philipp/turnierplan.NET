@@ -7,6 +7,7 @@ public sealed record ComputationConfiguration
     private static readonly IReadOnlyList<TeamComparisonMode> __defaultTeamComparisonModes =
     [
         TeamComparisonMode.ByPoints,
+        TeamComparisonMode.ByMatchesWon,
         TeamComparisonMode.ByScoreDifference,
         TeamComparisonMode.ByScore,
         TeamComparisonMode.ByDirectComparison

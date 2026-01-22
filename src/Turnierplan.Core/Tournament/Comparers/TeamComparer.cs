@@ -60,6 +60,7 @@ internal sealed class TeamComparer(Tournament tournament) : IComparer<IComparabl
         return mode switch
         {
             TeamComparisonMode.ByPoints => y.Statistics.Points - x.Statistics.Points,
+            TeamComparisonMode.ByMatchesWon => y.Statistics.MatchesWon - x.Statistics.MatchesWon,
             TeamComparisonMode.ByScoreDifference => y.Statistics.ScoreDifference - x.Statistics.ScoreDifference,
             TeamComparisonMode.ByScore => y.Statistics.ScoreFor - x.Statistics.ScoreFor,
             TeamComparisonMode.ByDirectComparison => CompareByDirectComparison(x, y),

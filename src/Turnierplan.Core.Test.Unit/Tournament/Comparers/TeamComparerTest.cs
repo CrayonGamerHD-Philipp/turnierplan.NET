@@ -75,6 +75,40 @@ public sealed class TeamComparerTest
         result.Should().Be(expectedResult);
     }
 
+    /// <remarks>In case of equal wins, the team with the lower team id is considered 'better'.</remarks>
+    [Theory]
+    [InlineData(4, 3, -1)]
+    [InlineData(5, 3, -1)]
+    [InlineData(3, 4, 1)]
+    [InlineData(3, 5, 1)]
+    [InlineData(3, 3, -1)]
+    public void TeamComparerTest___Compare_By_Matches_Won___Works_As_Expected(int winsA, int winsB, int expectedResult)
+    {
+        // Arrange
+        var comparer = CreateTestComparer(TeamComparisonMode.ByMatchesWon);
+
+        var teamX = new TestComparableTeam(DummyTeam(1), 0, 0)
+        {
+            Statistics = new TeamGroupStatistics
+            {
+                MatchesWon = winsA
+            }
+        };
+        var teamY = new TestComparableTeam(DummyTeam(2), 0, 0)
+        {
+            Statistics = new TeamGroupStatistics
+            {
+                MatchesWon = winsB
+            }
+        };
+
+        // Act
+        var result = comparer.Compare(teamX, teamY);
+
+        // Assert
+        result.Should().Be(expectedResult);
+    }
+
     /// <remarks>In case of equal score difference, the team with the lower team id is considered 'better'.</remarks>
     [Theory]
     [InlineData(5, 0, 3, 0, -1)]

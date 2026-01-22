@@ -7,5 +7,6 @@ public enum TeamComparisonMode
     ByPoints = 1,
     ByScoreDifference = 2,
     ByScore = 3,
-    ByDirectComparison = 4
+    ByDirectComparison = 4,
+    ByMatchesWon = 5
 }
